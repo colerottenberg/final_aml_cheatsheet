@@ -177,7 +177,7 @@ by Cole Rottenberg,~page~\thepage~of~2
 
 \header
 
-\begin{multicols}{5}
+\begin{multicols}{4}
 
 \section*{Supervised Classification}
 \subsection*{Boosting}
@@ -340,6 +340,17 @@ by Cole Rottenberg,~page~\thepage~of~2
   \item \textbf{Backward Pass:} $\delta^{(L)} = \nabla_a J \odot f^{(L)'}(z^{(L)})$, $\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot f^{(l)'}(z^{(l)})$
   \item \textbf{Weight Update:} $\nabla_{W^{(l)}} J = \delta^{(l)} (a^{(l-1)})^T$, $\nabla_{b^{(l)}} J = \delta^{(l)}$
 \end{enumerate}
+
+\subsection*{Optimizers}
+
+\subsubsection*{Gradient Descent}
+
+\begin{enumerate}
+  \item \textbf{Batch Gradient Descent:} $\theta = \theta - \eta \nabla_\theta J(\theta)$
+  \item \textbf{Stochastic Gradient Descent:} $\theta = \theta - \eta \nabla_\theta J(\theta; x^{(i)}; y^{(i)})$
+  \item \textbf{Mini-Batch Gradient Descent:} $\theta = \theta - \eta \nabla_\theta J(\theta; x^{(i:i+n)}; y^{(i:i+n)})$
+\end{enumerate}
+
 
 \end{multicols}
 
