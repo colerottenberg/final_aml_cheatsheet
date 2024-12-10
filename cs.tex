@@ -178,54 +178,54 @@ by Cole Rottenberg,~page~\thepage~of~2
 \header
 
 \begin{multicols}{5}
-\section*{Data Preprocessing}
+
+\section*{Supervised Classification}
+\subsection*{Boosting}
+\subsubsection*{AdaBoosting}
 \begin{itemize}
-    \item \textbf{Normalization:} $\mathbf{x} = \frac{\mathbf{x} - \min(\mathbf{x})}{\max(\mathbf{x}) - \min(\mathbf{x})}$
-    \item \textbf{Standardization:} $\mathbf{x} = \frac{\mathbf{x} - \mu}{\sigma}$
-    \item \textbf{Handling Missing Values:}
-    \begin{itemize}
-        \item Mean/Median Imputation
-        \item Mode Imputation
-        \item KNN Imputation
-    \end{itemize}
+  \item \textbf{Weight Assignment:} $w_{i,0} = \frac{1}{n}$
+  \item \textbf{Error Rate:} $r_j = \frac{\sum\limits_{\substack{i=1 \\ \hat{y}_j^{(i)}\neq y^{(i)}}}^N w^{(i)}}{\sum_{i=1}^N w^{(i)}}$
+  \item Predictor Weight: $\alpha_j = \eta \ln \left(\frac{1-r_j}{r_j}\right)$
 \end{itemize}
 
-\section*{Feature Engineering}
+\subsection*{Hard SVM}
 \begin{itemize}
-    \item \textbf{Polynomial Features:} $x_1, x_2, x_1^2, x_1x_2, x_2^2$
-    \item \textbf{Interaction Features:} $x_1 \cdot x_2$
-    \item \textbf{Log Transform:} $\log(x)$
-    \item \textbf{Binning:} Discretize continuous variables
+  \item $y(x) = w^T \phi(x) + b = 0$
+  \item \textbf{Margin:} $\frac{1}{\|w\|}$
+  \item \textbf{Objective:} $\min_{w,b} \frac{1}{2} \|w\|^2$
+  \item \textbf{Discriminant Function:} $f(x) = w^T \phi(x) + b$
+  \item \textbf{Support Vectors:} $y_i(w^T \phi(x_i) + b) = 1$
+  \item \textbf{Polynomial Kernel:} $K(x, y) = (1 + \langle x, y \rangle)^d$
+  \item \textbf{Gaussian RBF Kernel:} $K(x, y) = \exp\left(-\frac{\|x-y\|^2}{2\sigma^2}\right)$
 \end{itemize}
 
-\section*{Model Selection}
+\subsection*{Soft SVM}
 \begin{itemize}
-    \item \textbf{Linear Regression:} $y = \beta_0 + \beta_1 x + \epsilon$
-    \item \textbf{Logistic Regression:} $\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x$
-    \item \textbf{Decision Trees:} Recursive binary splitting
-    \item \textbf{Random Forest:} Ensemble of decision trees
-    \item \textbf{SVM:} Maximize margin between classes
+  \item \textbf{Objective:} $\min_{w,b,\xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i$
+  \item \textbf{Constraints:} $y_i(w^T \phi(x_i) + b) \geq 1 - \xi_i$
+  \item \textbf{Slack Variables:} $\xi_i \geq 0$
+  \item \textbf{Lagrangian:} $\mathcal{L}(w, b, \xi, \alpha, \beta) = \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i - \sum_{i=1}^N \alpha_i(y_i(w^T \phi(x_i) + b) - 1 + \xi_i) - \sum_{i=1}^N \beta_i \xi_i$
+  \item \textbf{KKT Conditions:} $\alpha_i \geq 0, \beta_i \geq 0, \alpha_i(y_i(w^T \phi(x_i) + b) - 1 + \xi_i) = 0, \beta_i \xi_i = 0$
+  \item \textbf{Dual Problem:} $\max_\alpha \sum_{i=1}^N \alpha_i - \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i, x_j)$
+  \item \textbf{Predictor:} $f(x) = \sum_{i=1}^N \alpha_i y_i K(x, x_i) + b$
 \end{itemize}
 
-\section*{Model Evaluation}
+\section*{Dimensionality Reduction}
+\subsection*{Curse of Dimensionality}
 \begin{itemize}
-    \item \textbf{Confusion Matrix:}
-    \begin{itemize}
-        \item TP, FP, TN, FN
-    \end{itemize}
-    \item \textbf{Accuracy:} $\frac{TP + TN}{TP + TN + FP + FN}$
-    \item \textbf{Precision:} $\frac{TP}{TP + FP}$
-    \item \textbf{Recall:} $\frac{TP}{TP + FN}$
-    \item \textbf{F1 Score:} $2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$
-    \item \textbf{ROC Curve:} Plot of TPR vs. FPR
+  \item \textbf{Volume:} $V_d(r) = r^d$
+  \item \textbf{Ratio:} $ratio = \frac{V_{crust}}{V_{S_1}} = \frac{V_{S_1} - V_{crust}}{V_{S_1}}$
+  \item \textbf{Vol Eqn:} $V = \frac{r^D \cdot \pi^{D/2}}{\rho(D/2 + 1)}$
+  \item \textbf{ratio} = $1 - (1 - \frac{\epsilon}{r})^D$
 \end{itemize}
 
-\section*{Hyperparameter Tuning}
+\subsection*{Feature Selection}
 \begin{itemize}
-    \item \textbf{Grid Search:} Exhaustive search over parameter grid
-    \item \textbf{Random Search:} Randomly sample parameters
-    \item \textbf{Bayesian Optimization:} Model-based optimization
-    \item \textbf{Cross-Validation:} k-Fold, Leave-One-Out
+  \item \textbf{Embedded:} L1: $\text{L1: }\Vert\mathbf{w}\Vert_1 = \sum_{j=0}^M |w_j|$
+  \item \textbf{Wrappers:} Recursive Feature Elimination using Greedy Search
+  \item \textbf{Feature Extraction:} PCA, LDA
+  \item \textbf{PCA:} 
+
 \end{itemize}
 
 \end{multicols}
