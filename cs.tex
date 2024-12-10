@@ -177,7 +177,7 @@ by Cole Rottenberg,~page~\thepage~of~2
 
 \header
 
-\begin{multicols}{4}
+\begin{multicols}{5}
 
 \section*{Supervised Classification}
 \subsection*{Boosting}
@@ -350,6 +350,15 @@ by Cole Rottenberg,~page~\thepage~of~2
   \item \textbf{Stochastic Gradient Descent:} $\theta = \theta - \eta \nabla_\theta J(\theta; x^{(i)}; y^{(i)})$
   \item \textbf{Mini-Batch Gradient Descent:} $\theta = \theta - \eta \nabla_\theta J(\theta; x^{(i:i+n)}; y^{(i:i+n)})$
 \end{enumerate}
+
+\subsubsection*{Momentum}
+
+\begin{enumerate}
+  \item \textbf{Update:} $v = \gamma v + \eta \nabla_\theta J(\theta)$, $\theta = \theta - v$
+  \item \textbf{Nesterov Momentum:} $v = \gamma v + \eta \nabla_\theta J(\theta - \gamma v)$, $\theta = \theta - v$
+  \item \textbf{Adam:} $m = \beta_1 m + (1 - \beta_1) \nabla_\theta J(\theta)$, $v = \beta_2 v + (1 - \beta_2) (\nabla_\theta J(\theta))^2$, $\theta = \theta - \eta \frac{m}{\sqrt{v} + \epsilon}$
+\end{enumerate}
+
 
 
 \end{multicols}
