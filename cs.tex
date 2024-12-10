@@ -224,9 +224,57 @@ by Cole Rottenberg,~page~\thepage~of~2
   \item \textbf{Embedded:} L1: $\text{L1: }\Vert\mathbf{w}\Vert_1 = \sum_{j=0}^M |w_j|$
   \item \textbf{Wrappers:} Recursive Feature Elimination using Greedy Search
   \item \textbf{Feature Extraction:} PCA, LDA
-  \item \textbf{PCA:} 
-
 \end{itemize}
+
+\subsubsection*{PCA:}
+\begin{itemize}
+  \item \textbf{Mean:} $\mu = \frac{1}{N} \sum_{i=1}^N x_i$
+  \item \textbf{Covariance:} $\Sigma = \frac{1}{N} \sum_{i=1}^N (x_i - \mu)(x_i - \mu)^T$
+  \item \textbf{Eigendecomposition:} $\Sigma = W \Lambda W^T$
+  \item \textbf{Sorting:} $\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_M$
+  \item \textbf{Projection:} $z = W^T x$
+  \item \textbf{Reconstruction:} $x = W z + \mu$
+\end{itemize}
+
+\subsection*{MDS:}
+\begin{itemize}
+  \item \textbf{Distance Matrix:} $D = \{d_{ij}\}$
+  \item \textbf{Gram Matrix:} $G = -\frac{1}{2} H D H$
+  \item \textbf{Eigendecomposition:} $G = V \Lambda V^T$
+  \item \textbf{Projection:} $Z = V \Lambda^{1/2}$
+  \item \textbf{Reconstruction:} $D = \{d_{ij}\}$
+\end{itemize}
+
+\subsection{ISOMAP}
+\begin{itemize}
+  \item \textbf{Shortest Path:} $d_{ij} = \min_{p_{ij}} \sum_{k=1}^{L_{ij}-1} \|x_{p_{ij}(k)} - x_{p_{ij}(k+1)}\|$
+  \item \textbf{Time Complexity:} $O(N^3)$
+\end{itemize}
+
+\subsection*{LLE}
+\begin{itemize}
+  \item Finding a set of weights $W \in \Re^{D \times d}$ that minimizes the reconstruction error
+  \item $x_i = \sum_{j=1}^K w_{ij} x_{i(j)}$
+\end{itemize}
+
+\subsection*{t-SNE}
+\begin{itemize}
+  \item \textbf{Objective:} $KL(P||Q) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}$
+  \item \textbf{Perplexity:} $\text{Perp}(P_i) = 2^{H(P_i)}$
+  \item \textbf{Symmetric SNE:} $p_{ij} = \frac{p_{i|j} + p_{j|i}}{2N}$
+  \item \textbf{Gradient:} $\frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)(1 + \|y_i - y_j\|^2)^{-1}$
+  \item \textbf{Time Complexity:} $O(N^2)$
+\end{itemize}
+
+\section*{Clustering}
+
+\subsection*{K-Means}
+\begin{enumerate}
+  \item Centroid Assignment: $u^{(i)} = \arg\min_j \|x^{(i)} - \mu_j\|^2$
+  \item Requires \textbf{Scaling the Data}
+  \item Convergence if Assignments do not change
+\end{enumerate}
+
 
 \end{multicols}
 
