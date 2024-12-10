@@ -1,0 +1,72 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{margin=0.5in}
+
+\setlength{\columnsep}{0.25in}
+
+\title{Applied Machine Learning Cheat Sheet}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{multicols}{3}
+\section*{Data Preprocessing}
+\begin{itemize}
+    \item \textbf{Normalization:} $\mathbf{x} = \frac{\mathbf{x} - \min(\mathbf{x})}{\max(\mathbf{x}) - \min(\mathbf{x})}$
+    \item \textbf{Standardization:} $\mathbf{x} = \frac{\mathbf{x} - \mu}{\sigma}$
+    \item \textbf{Handling Missing Values:}
+    \begin{itemize}
+        \item Mean/Median Imputation
+        \item Mode Imputation
+        \item KNN Imputation
+    \end{itemize}
+\end{itemize}
+
+\section*{Feature Engineering}
+\begin{itemize}
+    \item \textbf{Polynomial Features:} $x_1, x_2, x_1^2, x_1x_2, x_2^2$
+    \item \textbf{Interaction Features:} $x_1 \cdot x_2$
+    \item \textbf{Log Transform:} $\log(x)$
+    \item \textbf{Binning:} Discretize continuous variables
+\end{itemize}
+
+\section*{Model Selection}
+\begin{itemize}
+    \item \textbf{Linear Regression:} $y = \beta_0 + \beta_1 x + \epsilon$
+    \item \textbf{Logistic Regression:} $\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x$
+    \item \textbf{Decision Trees:} Recursive binary splitting
+    \item \textbf{Random Forest:} Ensemble of decision trees
+    \item \textbf{SVM:} Maximize margin between classes
+\end{itemize}
+
+\section*{Model Evaluation}
+\begin{itemize}
+    \item \textbf{Confusion Matrix:}
+    \begin{itemize}
+        \item TP, FP, TN, FN
+    \end{itemize}
+    \item \textbf{Accuracy:} $\frac{TP + TN}{TP + TN + FP + FN}$
+    \item \textbf{Precision:} $\frac{TP}{TP + FP}$
+    \item \textbf{Recall:} $\frac{TP}{TP + FN}$
+    \item \textbf{F1 Score:} $2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$
+    \item \textbf{ROC Curve:} Plot of TPR vs. FPR
+\end{itemize}
+
+\section*{Hyperparameter Tuning}
+\begin{itemize}
+    \item \textbf{Grid Search:} Exhaustive search over parameter grid
+    \item \textbf{Random Search:} Randomly sample parameters
+    \item \textbf{Bayesian Optimization:} Model-based optimization
+    \item \textbf{Cross-Validation:} k-Fold, Leave-One-Out
+\end{itemize}
+
+\end{multicols}
+
+\end{document}
