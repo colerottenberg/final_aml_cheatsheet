@@ -282,6 +282,64 @@ by Cole Rottenberg,~page~\thepage~of~2
   \item \textbf{Silhouette Coefficient:} $s = \frac{1}{N} \sum_{i=1}^N \frac{b_i-a_i}{\max(a_i,b_i)}$
 \end{enumerate}
 
+\subsubsection*{External Criteria}
+\begin{enumerate}
+  \item \textbf{Rand Index:}
+  \begin{enumerate}
+    \item \textbf{a} is the number of pairs of elements in $X$ that are in the same subset in $C$ and in the same subset in $D$.
+    \item $b$ is the number of pairs of elements in $X$ that are in different subset in $C$ and in different subset in $D$.
+    \item  $c$ is the number of pairs of elements in $X$ that are in the same subset in $C$ and in different subset in $D$.
+    \item $d$ is the number of pairs of elements in $X$ that are in different subset in $C$ and in the same subset in $D$.
+  \end{enumerate}
+  \item Rand Score = $\frac{a+b}{a+b+c+d}$
+\end{enumerate}
+
+\subsection*{DBSCAN}
+\begin{itemize}
+  \item \textbf{Core Point:} $N_\epsilon(x) \geq \text{minPts}$
+  \item \textbf{Border Point:} $N_\epsilon(x) < \text{minPts}$, but $x$ is in the $\epsilon$-neighborhood of a core point
+  \item \textbf{Noise Point:} Neither core nor border
+  \item \textbf{Time Complexity:} $O(N \log N)$
+\end{itemize}
+
+\subsection*{Heirarchical Clustering}
+
+\subsubsection*{Agglomerative}
+\begin{itemize}
+  \item \textbf{Single Linkage:} $d(C_i, C_j) = \min_{x \in C_i, y \in C_j} \|x - y\|$
+  \item \textbf{Complete Linkage:} $d(C_i, C_j) = \max_{x \in C_i, y \in C_j} \|x - y\|$
+  \item \textbf{Average Linkage:} $d(C_i, C_j) = \frac{1}{|C_i| |C_j|} \sum_{x \in C_i} \sum_{y \in C_j} \|x - y\|$
+\end{itemize}
+
+\subsection*{Distance Metrics}
+\begin{enumerate}
+  \item \textbf{Euclidean:} $\|x - y\|_2 = \sqrt{\sum_{i=1}^D (x_i - y_i)^2}$
+  \item \textbf{City-Block:} $\|x - y\|_1 = \sum_{i=1}^D |x_i - y_i|$
+  \item \textbf{Mahalanobis:} $\|x - y\|_M = \sqrt{(x - y)^T M (x - y)}$ where $M$ is the covariance matrix
+  \item \textbf{Cosine:} $\cos(x, y) = \frac{x^T y}{\|x\|_2 \|y\|_2}$
+\end{enumerate}
+
+\section*{Neural Networks}
+
+\subsection*{Activation Functions}
+\begin{enumerate}
+  \item \textbf{Heaviside:} $H(x) = \begin{cases} 0 & x < 0 \\ 1 & x \geq 0 \end{cases}$
+  \item \textbf{Linear:} $f(x) = x$
+  \item \textbf{Sigmoid:} $f(x) = \frac{1}{1 + e^{-x}}$
+  \item \textbf{Tanh:} $f(x) = \frac{\exp(x) - \exp(-x)}{\exp(x) + \exp(-x)}$
+  \item \textbf{ReLU:} $f(x) = \max(0, x)$
+  \item \textbf{Leaky ReLU:} $f(x) = \max(\alpha \cdot x, x)$
+  \item \textbf{Softmax:} $f(x)_i = \frac{\exp(x_i)}{\sum_{j=1}^K \exp(x_j)}$
+  \item \textbf{Exponential Linear Unit:} $f(x) = \begin{cases} x & x \geq 0 \\ \alpha (\exp(x) - 1) & x < 0 \end{cases}$
+  \item \textbf{Softplus:} $f(x) = \log(1 + \exp(x))$
+\end{enumerate}
+
+\subsection*{Backpropagation}
+\begin{enumerate}
+  \item \textbf{Forward Pass:} $z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}$, $a^{(l)} = f^{(l)}(z^{(l)})$
+  \item \textbf{Backward Pass:} $\delta^{(L)} = \nabla_a J \odot f^{(L)'}(z^{(L)})$, $\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot f^{(l)'}(z^{(l)})$
+  \item \textbf{Weight Update:} $\nabla_{W^{(l)}} J = \delta^{(l)} (a^{(l-1)})^T$, $\nabla_{b^{(l)}} J = \delta^{(l)}$
+\end{enumerate}
 
 \end{multicols}
 
